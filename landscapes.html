@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landscape — Your Name Photography</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Cutive Mono", monospace;
+      background: #fff;
+      color: #111;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #555;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    /* Masonry-style grid */
+    main {
+      max-width: 1600px;
+      margin: 2rem auto;
+      column-count: 3;
+      column-gap: 6px;
+      padding: 0 1rem;
+    }
+
+    .photo {
+      break-inside: avoid;
+      margin-bottom: 6px;
+      padding: 0.4rem 0.4rem;
+      overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.85);
+      z-index: 1200;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+      /* Make inner centered and constrained to viewport; images scale to fit height instead of scrolling */
+      .lightbox .inner { max-width: 96%; max-height: 100vh; position: relative; display:flex; align-items:center; justify-content:center; }
+      /* Force image to scale to viewport height (minus padding) while preserving aspect ratio */
+      .lightbox img { max-width: 100%; height: calc(100vh - 40px); width: auto; object-fit: contain; display: block; border-radius: 2px; }
+    .lightbox .close {
+      position: absolute; top: -10px; right: -10px; background: rgba(0,0,0,0.6); color: #fff; border: 0; padding: 8px 10px; cursor: pointer; font-size: 18px; border-radius: 4px;
+    }
+
+    .photo img:hover {
+      transform: scale(1.02);
+      filter: brightness(105%);
+      cursor: pointer;
+    }
+
+    /* Panorama block that spans all columns in the masonry layout */
+    .panorama {
+      break-inside: avoid;
+      -webkit-column-span: all;
+      column-span: all;
+      margin: 0 0 6px;
+      overflow: hidden;
+    }
+
+    .panorama img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .panorama img:hover {
+      transform: scale(1.02);
+      filter: brightness(105%);
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      main { column-count: 2; }
+    }
+
+    @media (max-width: 600px) {
+      main { column-count: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Landscapes</h1>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="photo"><img src="images/landscapes/land1.jpeg" alt="Landscape 1" loading="lazy"></div>
+    <div class="photo"><img src="images/landscapes/land3.jpeg" alt="Landscape 3" loading="lazy"></div>
+    <div class="photo"><img src="images/landscapes/land4.jpeg" alt="Landscape 4" loading="lazy"></div>
+
+    <!-- Panorama that spans the full width of the column container -->
+    <div class="panorama">
+      <img src="images/landscapes/land2.jpeg" alt="Panoramic landscape" loading="lazy">
+    </div>
+
+    <div class="photo"><img src="images/landscapes/land5.jpeg" alt="Landscape 5" loading="lazy"></div>
+    <div class="photo"><img src="images/landscapes/land6.jpeg" alt="Landscape 6" loading="lazy"></div>
+    <div class="photo"><img src="images/landscapes/land7.jpeg" alt="Landscape 7" loading="lazy"></div>
+    <div class="photo"><img src="images/landscapes/land8.jpeg" alt="Landscape 8" loading="lazy"></div>
+    <div class="photo"><img src="images/landscapes/land9.jpeg" alt="Landscape 9" loading="lazy"></div>
+  </main>
+
+  <!-- Lightbox markup -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
+    <div class="inner">
+      <button class="close" id="lbClose" aria-label="Close">✕</button>
+      <img id="lbImage" src="" alt="" />
+    </div>
+  </div>
+
+  <script src="js/lightbox-anim.js"></script>
+
+</body>
+</html>
