@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Photography Portfolio</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Courier New", Courier, monospace;
+      background: #fff;
+      color: #111;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .nav button {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+    }
+
+    .nav button.active {
+      background: #f3f3f3;
+    }
+
+    main {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Masonry layout using CSS columns */
+    .grid {
+      column-count: 3;
+      column-gap: 0px;
+      width: 100%;
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 0 4px 20px;
+    }
+
+    .card {
+      position: relative;
+      margin-bottom: 2px;
+      break-inside: avoid;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid #eee;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.02);
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90%;
+      object-fit: contain;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .grid { column-count: 2; }
+    }
+
+    @media (max-width: 600px) {
+      .grid { column-count: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Silas Janke — Photography</div>
+      <nav class="nav" aria-label="Categories">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="ice">Icescapes</button>
+        <button data-filter="land">Landscapes</button>
+        <button data-filter="city">Cityscapes</button>
+        <button data-filter="night">Nightscapes</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="grid" id="gallery">
+        <figure class="card" data-category="ice">
+          <img src="images/icescapes/P6292008.JPG" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="ice">
+          <img src="images/icescapes/9766C2D8-8228-4050-AE51-2EC4939072CC_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="ice">
+          <img src="images/icescapes/P6291989.JPG" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="ice">
+          <img src="images/icescapes/P8211843.JPG" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="city">
+          <img src="images/cityscapes/7C427B1D-3581-4DDE-BE60-4F7489176BEA_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="night">
+          <img src="images/nightscapes/55217B2F-9A56-4B6A-8792-4586AFDB3396_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="land">
+          <img src="images/landscapes/225AFC2A-F969-4929-A4DD-4993D613E239_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="land">
+          <img src="images/landscapes/5DE8B6BC-889C-4065-B5C2-129AF01B3425_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="land">
+          <img src="images/landscapes/6C01C122-21AD-41B1-9130-058980CEE39B_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+        <figure class="card" data-category="land">
+          <img src="images/landscapes/8647A946-7715-4895-B67E-AADA6D42C050_1_105_c.jpeg" alt="" loading="lazy">
+        </figure>
+
+      </section>
+    </main>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lbClose">×</button>
+    <img id="lbImage" src="" alt="">
+  </div>
+
+  <script>
+    // Filtering logic
+    const buttons = document.querySelectorAll('.nav button');
+    const cards = document.querySelectorAll('.grid .card');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.nav button.active').classList.remove('active');
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(c => {
+          c.style.display = (filter === 'all' || c.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbClose = document.getElementById('lbClose');
+
+    document.querySelectorAll('.grid img').forEach(img => {
+      img.addEventListener('click', e => {
+        lbImage.src = e.target.src;
+        lbImage.alt = e.target.alt;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lbClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lbImage.src = '';
+    });
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lbClose.click();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        lbClose.click();
+      }
+    });
+  </script>
+</body>
+</html>
