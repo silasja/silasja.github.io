@@ -36,7 +36,7 @@
       justify-content: flex-start;  /* brand stays left */
       align-items: center;
       flex-wrap: wrap;
-      padding: 2rem 2rem;
+      padding: 2rem 2rem;;
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
       color: #111;
@@ -95,7 +95,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      margin-top: 80px; /* offset for fixed header */
+      margin-top: 0; /* offset for fixed header */
       align-items: center;
       gap: 40px; /* spacing between panoramic sections */
       padding-bottom: 60px;
@@ -109,7 +109,7 @@
       max-width: 1600px;
       overflow: hidden;
       cursor: pointer;
-      margin-top: 1rem;
+      margin-top: 0rem;
       border: 1px solid #e0e0e0; /* subtle border framing each image */
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -191,7 +191,7 @@
 
   <!-- Landing Page Categories -->
   <div class="categories">
-    <a href="landscapes.html" class="category">
+    <a href="landscapes.html" class="category", id="first-category">
       <img src="images/landscapes/pano1.jpeg" alt="Landscape category">
       <h1>Landscapes</h1>
     </a>
@@ -229,7 +229,29 @@
     .then(data => {
       document.getElementById('site-header').innerHTML = data;
     });
-</script>
+  </script>
+
+  <script>
+    // Function to set the top margin of the first category equal to header height
+    function updateFirstCategoryMargin() {
+      const header = document.querySelector('header');
+      const firstCat = document.getElementById('first-category');
+      
+      if (header && firstCat) {
+        const headerHeight = header.offsetHeight;           // includes padding + border
+        firstCat.style.marginTop = headerHeight + 15 + 'px';     // apply dynamically
+      }
+    }
+
+    // Run on load
+    window.addEventListener('load', updateFirstCategoryMargin);
+
+    // Run on resize (covers desktop resize + mobile rotation)
+    window.addEventListener('resize', updateFirstCategoryMargin);
+
+    // Optional: Run immediately in case header is already loaded
+    updateFirstCategoryMargin();
+  </script>
 
 </body>
 </html>
