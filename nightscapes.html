@@ -1,1 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nightscapes - Silas Janke Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css" />
+  <link rel="stylesheet" href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="branding" href="index.html" aria-label="Go to homepage">
+      <span class="name">Silas Janke</span>
+      <span class="role">Astronomy Research and Software</span>
+    </a>
 
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="photography.html" aria-current="page">Photography</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="page-main page-main--gallery">
+    <section class="gallery-head reveal">
+      <p class="section-title"><a href="photography.html">Photography</a></p>
+      <h1>Nightscapes</h1>
+      <p>Capturing the beauty of space.</p>
+    </section>
+
+    <section class="gallery-track" aria-label="Nightscapes gallery">
+        <figure class="gallery-item"><img src="images/nightscapes/night1.jpeg" alt="Nightscape photograph 1" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="images/nightscapes/night2.jpeg" alt="Nightscape photograph 2" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="images/nightscapes/night3.jpeg" alt="Nightscape photograph 3" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="images/nightscapes/night4.jpeg" alt="Nightscape photograph 4" loading="lazy" /></figure>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <span>Silas Janke</span>
+    <span>Nightscapes Gallery</span>
+    <span>&copy; <span data-year></span></span>
+  </footer>
+
+  <script src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
