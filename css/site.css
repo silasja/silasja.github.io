@@ -577,8 +577,28 @@ img {
     align-items: flex-start;
   }
 
+  .branding {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 5.4rem);
+  }
+
+  .branding .name {
+    font-size: 0.92rem;
+  }
+
+  .branding .role {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    line-height: 1.22;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .nav-toggle {
     display: inline-flex;
+    margin-left: auto;
+    flex: 0 0 auto;
   }
 
   .site-nav {
