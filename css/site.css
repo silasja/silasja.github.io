@@ -379,10 +379,11 @@ img {
   margin: 0;
   color: #ffffff;
   z-index: 2;
-  font-size: clamp(3.4rem, 3.2vw, 2.2rem);
+  font-size: clamp(1.8rem, 3.2vw, 3.4rem);
   letter-spacing: 0.08em;
   font-family: "IBM Plex Mono", monospace;
   text-transform: uppercase;
+  max-width: calc(100% - 2.6rem);
 }
 
 .photo-panel h2.reveal {
@@ -603,6 +604,13 @@ img {
 
   .photo-panel {
     min-height: 52vw;
+  }
+
+  .photo-panel h2 {
+    font-size: clamp(1.1rem, 7.2vw, 2rem);
+    letter-spacing: 0.04em;
+    line-height: 1.08;
+    overflow-wrap: anywhere;
   }
 
   .hero-title-wrap {
