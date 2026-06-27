@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bohemian Matrices – Silas Janke</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+  <style>
+    .bohemian-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.6rem;
+    }
+
+    .bohemian-figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bohemian-figure-media {
+      background: #000;
+      aspect-ratio: 3 / 2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bohemian-figure img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 220ms ease, filter 220ms ease;
+      backface-visibility: hidden;
+    }
+
+    .bohemian-figure:hover img {
+      transform: scale(1.015);
+      filter: brightness(1.08);
+    }
+
+    .bohemian-figure figcaption {
+      padding: 0.55rem 0.75rem;
+      font-size: 0.75rem;
+      font-family: "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    @media (max-width: 640px) {
+      .bohemian-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="branding" href="index.html" aria-label="Go to homepage">
+      <span class="name">Silas Janke</span>
+      <span class="role">Coding for Space and Earth</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="photography.html">Photography</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+
+    <section class="gallery-head reveal">
+      <p class="section-title"><a href="projects.html">Projects</a> &rsaquo; Bohemian Matrices</p>
+      <h1>Visualizing Eigenvalues of Random Integer Matrices</h1>
+      <p>Bohemian matrices are families of random matrices whose entries are drawn from a fixed, finite set of integers. Plotting all eigenvalues of an entire matrix family on the complex plane reveals intricate, structured, and often beautiful geometric patterns.</p>
+    </section>
+
+    <section class="split reveal" style="margin-bottom: 1.5rem;">
+      <article class="panel">
+        <h2 class="section-title">What are Bohemian Matrices?</h2>
+        <p style="margin-top: 0.5rem; color: var(--muted);">The name is derived from <strong>BO</strong>unded <strong>HE</strong>ight <strong>M</strong>atrix of <strong>I</strong>ntegers (BOHEMI). A Bohemian family consists of all matrices of a given structure — such as upper Hessenberg or Toeplitz — whose entries are drawn from a predetermined finite discrete set, called the population. Typical populations are small sets like {&minus;1, 0, 1} or {0, 1}.</p>
+        <p style="color: var(--muted);">Even for modest dimensions, a family can contain billions of matrices. Their collective eigenvalue spectra, plotted in the complex plane and colored by density, form striking and geometrically rich images. Characteristic features include sharp exclusion zones — regions where no eigenvalues can ever fall — and dense fractal-like structures.</p>
+      </article>
+      <article class="panel">
+        <h2 class="section-title">The BHIME Project</h2>
+        <p style="margin-top: 0.5rem; color: var(--muted);">The BHIME (Bounded Height Integer Matrix Eigenvalues) project is a MATLAB toolkit developed by Steven Thornton and Robert Corless at the University of Western Ontario for generating high-resolution eigenvalue density images. It uses a three-stage pipeline: random sampling of matrices from the family, accumulation of eigenvalues onto a fine complex-plane grid, and rendering with customizable colormaps.</p>
+        <p style="color: var(--muted);">The images here were produced using this toolkit, exploring different matrix structures and populations.</p>
+      </article>
+    </section>
+
+    <section class="reveal" aria-labelledby="gallery-title">
+      <h2 id="gallery-title" class="section-title">Eigenvalue Visualizations</h2>
+      <div class="bohemian-gallery">
+        <figure class="bohemian-figure">
+          <div class="bohemian-figure-media">
+            <img src="images/bohemians/bohemian3.png" alt="Eigenvalue density 1" loading="lazy" />
+          </div>
+        </figure>
+        <figure class="bohemian-figure">
+          <div class="bohemian-figure-media">
+            <img src="images/bohemians/bohemian4.png" alt="Eigenvalue density 2" loading="lazy" />
+          </div>
+        </figure>
+        <figure class="bohemian-figure">
+          <div class="bohemian-figure-media">
+            <img src="images/bohemians/bohemian1.jpg" alt="Eigenvalue density 3" loading="lazy" />
+          </div>
+        </figure>
+        <figure class="bohemian-figure">
+          <div class="bohemian-figure-media">
+            <img src="images/bohemians/bohemian2.png" alt="Eigenvalue density 4" loading="lazy" />
+          </div>
+        </figure>
+        <figure class="bohemian-figure">
+          <div class="bohemian-figure-media">
+            <img src="images/bohemians/gif1.gif" alt="Animated eigenvalue density 1" loading="lazy" />
+          </div>
+        </figure>
+        <figure class="bohemian-figure">
+          <div class="bohemian-figure-media">
+            <img src="images/bohemians/gif2.gif" alt="Animated eigenvalue density 2" loading="lazy" />
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="reveal" style="margin-top: 1.5rem;" aria-labelledby="links-title">
+      <h2 id="links-title" class="section-title">Resources</h2>
+      <div class="split">
+        <article class="panel">
+          <h3 style="margin: 0; font-size: 1rem;">Bohemian Matrices Website</h3>
+          <p style="color: var(--muted);">The main project hub, hosting an image gallery, database of computed families, and research background.</p>
+          <div class="project-links">
+            <a href="http://bohemianmatrices.com" target="_blank" rel="noopener noreferrer">bohemianmatrices.com</a>
+          </div>
+        </article>
+        <article class="panel">
+          <h3 style="margin: 0; font-size: 1rem;">BHIME MATLAB Toolkit</h3>
+          <p style="color: var(--muted);">Open-source MATLAB code for sampling Bohemian families, processing eigenvalue data, and rendering density images.</p>
+          <div class="project-links">
+            <a href="https://github.com/BohemianMatrices/BHIME-Project" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <span>Silas Janke</span>
+    <span>Bohemian Matrices</span>
+    <span>&copy; <span data-year></span></span>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>
