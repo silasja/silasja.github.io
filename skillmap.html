@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skillmap – Silas Janke</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+  <style>
+    .skillmap-frame {
+      margin-top: 0.6rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #94a3b8;
+    }
+
+    .skillmap-frame .skillmap-fallback {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="branding" href="index.html" aria-label="Go to homepage">
+      <span class="name">Silas Janke</span>
+      <span class="role">Coding for Space and Earth</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="photography.html">Photography</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+
+    <section class="gallery-head reveal">
+      <p class="section-title"><a href="projects.html">Projects</a> &rsaquo; Skillmap</p>
+      <h1>Interactive Skill Treemap Generator</h1>
+      <p>A small browser tool for visualizing skills as a treemap, similar to the layouts used for stock-market sector maps. Skills are grouped by category and rated on a 1&ndash;5 scale, with box area scaling to the rating. Useful for CVs, application profiles or portfolio pages.</p>
+    </section>
+
+    <section class="reveal" aria-labelledby="tool-title">
+      <h2 id="tool-title" class="section-title">Try it</h2>
+      <div class="skillmap-frame">
+        <div id="skill-treemap-root">
+          <div class="skillmap-fallback">Loading skillmap&hellip; if nothing appears, JavaScript may be disabled in your browser.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="split reveal" style="margin-top: 1.5rem;">
+      <article class="panel">
+        <h2 class="section-title">How it works</h2>
+        <p style="margin-top: 0.5rem; color: var(--muted);">Categories and skills are entered on the left-hand panel. Each skill gets a rating from 1 (basic familiarity) to 5 (expert level), and box area in the treemap scales with that rating &mdash; larger box, stronger skill.</p>
+        <p style="color: var(--muted);">The layout is generated with a squarified treemap algorithm (D3.js), the same family of algorithms used for visualizing things like stock market sector performance or disk usage.</p>
+      </article>
+      <article class="panel">
+        <h3 style="margin: 0; font-size: 1rem;">Export</h3>
+        <p style="color: var(--muted);">The finished diagram is formatted for DIN&nbsp;A4 and can be exported as SVG, PNG or sent straight to a printer&rsquo;s &ldquo;Save as PDF&rdquo; option &mdash; ready to drop into a CV or application.</p>
+        <p style="color: var(--muted);">A profile can also be saved and reloaded as a JSON file, so it&rsquo;s easy to keep editing later.</p>
+      </article>
+    </section>
+
+    <section class="reveal" style="margin-top: 1.5rem;" aria-labelledby="links-title">
+      <h2 id="links-title" class="section-title">Resources</h2>
+      <div class="split">
+        <article class="panel">
+          <h3 style="margin: 0; font-size: 1rem;">Built with</h3>
+          <p style="color: var(--muted);">React for the UI and D3.js for the treemap layout. Runs entirely client-side &mdash; no data leaves the browser.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <span>Silas Janke</span>
+    <span>Skillmap</span>
+    <span>&copy; <span data-year></span></span>
+    <span><a href="imprint.html">Imprint</a></span>
+  </footer>
+
+  <!-- Skillmap tool dependencies -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="js/skillmap.bundle.js"></script>
+
+  <script src="js/site.js"></script>
+</body>
+</html>
