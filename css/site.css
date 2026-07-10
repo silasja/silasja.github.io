@@ -426,23 +426,44 @@ img {
   color: var(--muted);
 }
 
+/* Justified rows: every figure carries its aspect ratio in --ratio (baked by
+   tools/build_galleries.py). flex-basis and flex-grow are both proportional to
+   the ratio, so all items in a row resolve to the same height. */
 .gallery-track {
-  column-count: 3;
-  column-gap: 6px;
+  --row-h: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Absorbs leftover space so the last row keeps its natural size. */
+.gallery-track::after {
+  content: "";
+  flex-grow: 1000000;
 }
 
 .gallery-item {
-  break-inside: avoid;
+  --ratio: 1.5;
   margin: 0 0 6px;
   border: 1px solid var(--line);
   border-radius: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.72);
+  box-sizing: border-box;
+}
+
+.gallery-track .gallery-item {
+  margin: 0;
+  min-width: 0;
+  flex-grow: calc(var(--ratio) * 1000);
+  flex-basis: calc(var(--ratio) * var(--row-h));
+  aspect-ratio: var(--ratio);
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   cursor: zoom-in;
   transition: transform 220ms ease, filter 220ms ease;
@@ -452,24 +473,13 @@ img {
   will-change: transform;
 }
 
-.gallery-track .gallery-item.landscape img:not([src*="pano"]) {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.gallery-track .gallery-item.portrait img:not([src*="pano"]) {
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
 .gallery-item:hover img {
   transform: translateZ(0) scale(1.008);
   filter: brightness(1.03);
 }
 
-.gallery-item.panorama {
-  -webkit-column-span: all;
-  column-span: all;
+.gallery-track .gallery-item.panorama {
+  flex-basis: 100%;
 }
 
 .card-grid {
@@ -581,7 +591,7 @@ img {
   }
 
   .gallery-track {
-    column-count: 2;
+    --row-h: 200px;
   }
 }
 
@@ -632,8 +642,8 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .gallery-track {
-    column-count: 1;
+  .gallery-track .gallery-item {
+    flex-basis: 100%;
   }
 
   .photo-panel {
